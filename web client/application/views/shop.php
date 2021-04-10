@@ -50,7 +50,7 @@
 											<li><a href="<?php echo site_url('welcome/#home')?>">Home</a></li>
 											<li><a href="<?php echo site_url('welcome/#about')?>">About</a></li>
 											<li><a href="<?php echo site_url('welcome/#service')?>">Service</a></li>
-											<li><a href="<?php echo site_url('welcome/shop')?>">Shop</a></li>
+											<li><a href="<?php echo site_url('welcome/shop')?>">Shopping</a></li>
 											<li><a href="<?php echo site_url('welcome/#member')?>">Member</a></li>
 										</ul>
 									</nav>
