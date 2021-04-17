@@ -56,10 +56,10 @@
 											<?php endif; ?>
 											<?php if ($this->session->userdata('email')) : ?>
 												<li>
-													<div class="dropdown">
+													<div class="dropdown" >
 														<a href="#" data-toggle="dropdown"><?php echo $this->session->userdata('nama'); ?></a>
 														<div class="dropdown-menu">
-															<a style="color:black;" class="dropdown-item" href="<?php echo site_url('welcome/logout') ?>">Log Out</a>
+															<a style="color:black;" data-toggle="dropdown-item" href="<?php echo site_url('welcome/logout') ?>">Log Out</a>
 														</div>
 													</div>
 												</li>
