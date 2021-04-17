@@ -25,6 +25,38 @@ class Welcome extends CI_Controller {
 		$this->load->view('shop', $data);
 	}
 
+	public function login()
+	{
+		$this->load->view('login');
+	}
+
+	public function proses_login()
+	{
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$login = $this->welcome_model->login($username, $password);
+		if($login){
+			$sess = array(
+				'nama' => $login->nama_member,
+				'email' => $login->email_member,
+			);
+			
+			$this->session->set_userdata($sess);
+			redirect('');
+		}
+		else{
+			redirect('welcome/login');
+		}
+
+		
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('');
+	}
+
 	public function member_daftar()
 	{
 		$data = array(

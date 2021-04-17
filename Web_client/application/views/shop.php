@@ -47,11 +47,12 @@
 								<div class="limit-box">
 									<nav class="main-menu">
 										<ul class="menu-area-main">
-											<li><a href="#home">Home</a></li>
-											<li><a href="#about">About</a></li>
-											<li><a href="#service">Service</a></li>
+											<li><a href="<?php echo site_url('welcome/#home')?>">Home</a></li>
+											<li><a href="<?php echo site_url('welcome/#about')?>">About</a></li>
+											<li><a href="<?php echo site_url('welcome/#service')?>">Service</a></li>
 											<li><a href="<?php echo site_url('welcome/shop')?>">Shop</a></li>
-											<li><a href="#member">Member</a></li>
+											<li><a href="<?php echo site_url('welcome/#member')?>">Member</a></li>
+											<li><a href="<?php echo site_url('welcome/login')?>">Login</a></li>
 										</ul>
 									</nav>
 								</div>
@@ -98,7 +99,7 @@
 	</header>
 	<!-- banner end -->
 	<!-- choose start -->
-	<div id="about" class="choose_section">
+	<div id="" class="choose_section">
 		<div class="container">
 			<div class="col-sm-12">
 				<h1 class="choose_text">Kenapa anda harus <span class="color">memilih kami</span></h1>
@@ -106,161 +107,25 @@
 			</div>
 		</div>
 	</div>
-	<div class="choose_section_2">
+	<div class="contact_section_2">
 		<div class="container">
 			<div class="row">
+				<?php foreach($barang as $brg):?>
 				<div class="col-sm-4">
-					<div class="power_full">
+					<div class="power">
 						<div class="icon"><a href="#"><img src="<?php echo site_url('asset/client/images/service.png')?>"></a></div>
-						<h2 class="powerful_text">Pemesanan Service</h2>
-						<p class="making_tetx">Dengan teknisi service yang berpengalaman dan handal dapat membantu anda untuk memperbaiki masalah yang ada pada komputer atau laptop anda</p>
+						<h2 class="totaly_text"><?php echo $brg->nama?></h2>
+						<p class="making"><?php echo $brg->harga?></p>
 					</div>
 					<div class="btn_main">
-						<a href="#"><button type="button" class="read_bt">Lebih Lanjut</button></a>
+						<a href="#"><button type="button" class="read_bt"><i class="fa fa-shopping-cart"></i> Buy</button></a>
 					</div>
 				</div>
-				<div class="col-sm-4">
-					<div class="power">
-						<div class="icon"><a href="#"><img src="<?php echo site_url('asset/client/images/software.png')?>"></a></div>
-						<h2 class="totaly_text">Software</h2>
-						<p class="making">Kami menyediakan software 100% original dan aman untuk anda gunakan. Jadi anda tak perlu khawatir ataupun bingung untuk memilih software yang cocok dengan komputer maupun laptop anda
-
-						</p>
-					</div>
-					<div class="btn_main">
-						<a href="#"><button type="button" class="read_bt">Lebih Lanjut</button></a>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="power">
-						<div class="icon"><a href="#"><img src="<?php echo site_url('asset/client/images/headfone-icon.png')?>"></a></div>
-						<h2 class="totaly_text">Daftar Member</h2>
-						<p class="making">Banyak keuntungan yang anda dapatkan jika menjadi member setia kami. Kami menawarkan pelayanan dan harga khusus bagi anda yang telah menjadi member kami</p>
-					</div>
-					<div class="btn_main">
-						<a href="#member"><button type="button" role="button" class="read_bt">Lebih Lanjut</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- choose start -->
-	<!-- about start -->
-	<div class="about_main layout_padding">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="images">
-						<img src="<?php echo site_url('asset/client/images/img-1.png')?>" style="max-width: 100%;">
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="right_section_main">
-						<h1 class="dolar_tetx"><strong style="color: #2ba879;">Penawaran Spesial !</strong></h1>
-						<h2 class="special_text">Khusus Bagi Anda Member Baru Kami, Akan Mendapatkan Diskon 30%</h2>
-						<p class="donec_text">khusus untuk member baru yang mendaftar sampai dengan tanggal 3 April 2021. Kami menawarkan diskon yang menarik setiap pemesanan dan pembelian software yang akan anda beli.</p>
-						<div class="right_aero"><img src="<?php echo site_url('asset/client/images/right-aerow.png')?>"></div>
-					</div>
-				</div>
+				<?php endforeach;?>
 			</div>
 		</div>
 	</div>
 
-	<!-- service end -->
-	<!-- contact start -->
-	<div id="service" class="contact_section">
-		<div class="container">
-			<div class="col-sm-12">
-				<h1 class="choose_text">Daftar Service Sekarang Juga</h1>
-				<p class="lorem_text">Pelayanan yang memuaskan</p>
-			</div>
-		</div>
-	</div>
-	<div class="contact_section_2">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="input_main">
-						<form action="<?php echo site_url('welcome/service_daftar')?>" method="post">
-							<div class="container">
-								<div class="form-group">
-									<input type="text" class="email-bt" placeholder="Nama" name="name">
-								</div>
-								<div class="form-group">
-									<input type="text" class="email-bt" placeholder="Email" name="email">
-								</div>
-								<div class="form-group">
-									<input type="tel" class="email-bt" placeholder="No Whatsapp" name="nohp">
-								</div>
-								<div class="form-group">
-									<textarea name="alamat" id="alamat" cols="30" rows="10" class="massage-bt" placeholder="Alamat"></textarea>
-								</div>
-								<div class="form-group">
-									<input type="datetime-local" class="email-bt" placeholder="Waktu" name="waktu">
-								</div>
-								<div class="form-group">
-									<select name="kategori" id="kategori" class="">
-										<option value="">Pilih Kategori</option>
-										<?php foreach($kategori as $ktg) : ?>
-										<option value="<?php echo $ktg->ID_service?>"><?php echo $ktg->Nama_service?></option>
-										<?php endforeach;?>
-									</select>
-								</div>
-								<div class="form-group">
-									<input type="text" class="email-bt" placeholder="Deskripsi" name="deskripsi">
-								</div>
-							</div>
-							<div class="send_btn">
-								<input type="submit" class="main_bt" name="kirim" value="Kirim">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="member" class="contact_section">
-		<div class="container">
-			<div class="col-sm-12">
-				<h1 class="choose_text">Daftar Sekarang</h1>
-				<p class="lorem_text">Dapatkan harga khusus</p>
-			</div>
-		</div>
-	</div>
-	<div class="contact_section_2">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="input_main">
-						<form action="<?php echo site_url('welcome/member_daftar')?>" method="post">
-							<div class="container">
-								<div class="form-group">
-									<input type="text" class="email-bt" placeholder="Nama" name="name">
-								</div>
-								<div class="form-group">
-									<input type="text" class="email-bt" placeholder="Email" name="email">
-								</div>
-								<div class="form-group">
-									<input type="password" class="email-bt" placeholder="Password" name="password">
-								</div>
-								<div class="form-group">
-									<input type="tel" class="email-bt" placeholder="No Whatsapp" name="nohp">
-								</div>
-							</div>
-							<div class="send_btn">
-								<input type="submit" class="main_bt" name="kirim" value="Kirim">
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="section_right">
-						<img src="<?php echo site_url('asset/client/images/img-2.png')?>" style="max-width: 100%;">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="contact_section_3">
 		<div class="container">
 			<div class="contact_taital">

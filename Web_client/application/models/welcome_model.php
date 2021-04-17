@@ -24,4 +24,17 @@ class Welcome_model extends CI_Model {
     {
         $this->db->insert('service_order', $data);        
     }
+
+    public function login($username, $password)
+    {
+        $this->db->where('email_member', $username);
+        $this->db->where('password_member', $password);
+        $query = $this->db->get('member');
+        if($query->num_rows() > 0){
+            return $query->row();
+        }
+        else{
+            return false;
+        }
+    }
 }
