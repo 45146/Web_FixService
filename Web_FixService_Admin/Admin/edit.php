@@ -3,8 +3,7 @@
 <?php
 session_start();
 
-if($_SESSION['password']=='')
-{
+if ($_SESSION['password'] == '') {
     header("location:login.php");
 }
 include 'koneksi.php';
@@ -12,11 +11,12 @@ error_reporting(0);
 
 $t = mysqli_query($conn, "select * from about");
 $profile = mysqli_fetch_array($t);
-
+$username = $_SESSION['username'];
+$res = mysqli_query($conn, "select * from admin where username='$username'");
+$profile = mysqli_fetch_array($res);
 ob_start()
 
-
- ?>
+?>
 <!doctype html>
 <html lang="en">
 
@@ -35,7 +35,7 @@ ob_start()
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 
@@ -52,9 +52,9 @@ ob_start()
       <!-- SidebarBrand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-tools"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Admin <br/>Fix Service</div>
       </a>
 
       <!-- Divider -->
@@ -136,23 +136,22 @@ ob_start()
 
 
 
-        
+
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <?php
-   $sss = mysqli_query($conn, "select * from admin");
-   $rrr = mysqli_fetch_array($sss);
+$sss = mysqli_query($conn, "select * from admin");
+$rrr = mysqli_fetch_array($sss);
 
-
-             ?>
+?>
 
             <!-- Nav Item - User Information -->
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $profile['nama'] ?></span>
-                <img class="img-profile rounded-circle" src=" penampung/<?php echo$profile['foto'] ?>" alt="Profile"  width="100px" height="100px">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $profile['username'] ?></span>
+                <img class="img-profile rounded-circle" src=" resource/<?php echo $profile['foto'] ?>" alt="Profile"  width="100px" height="100px">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -164,7 +163,7 @@ ob_start()
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
                 </a>
-                <a class="dropdown-item" href="change.php?id=<?php echo $rrr['id']; ?>">
+                <a class="dropdown-item" href="change.php?id=<?php echo $profile['id']; ?>">
                   <i class="fas fa-ruler-horizontal fa-sm fa-fw mr-2 text-gray-400"></i>
                 Ganti Password
                 </a>
@@ -181,67 +180,118 @@ ob_start()
 
 
       <?php
-        $id_brg= ($_GET['id']);
-        $ggl = !$id_brg;
-        if($ggl){
+$id_brg = $_GET['id'];
+$fail = !$id_brg;
+if ($fail) {
 
-            echo "<div class='col-md-10 col-sm-12 col-xs-12 ml-5 mt-5'>";
-               echo "<div class='alert alert-danger mt-4 ml-5' role='alert'>";
-              echo "<p><center>Maaf Data Ini Tidak Tersedia</center></p>";
-               echo   "</div>";
-               echo "</div>";
+    echo "<div class='col-md-10 col-sm-12 col-xs-12 ml-5 mt-5'>";
+    echo "<div class='alert alert-danger mt-4 ml-5' role='alert'>";
+    echo "<p><center>Maaf Data Ini Tidak Tersedia</center></p>";
+    echo "</div>";
+    echo "</div>";
 
-        }else{
-        $det=mysqli_query($conn, "select * from masuk where id='$id_brg'");
-        while($d=mysqli_fetch_array($det)){
+} else {
+    $querySelect = mysqli_query($conn, "select barang.id ,barang.nama as nama ,jenis_barang.nama as jenis,barang.harga as harga, barang.tanggal_masuk as tanggal_masuk,barang.stok as stok from barang INNER JOIN jenis_barang on barang.jenis=jenis_barang.id where barang.id='$id_brg'");
+    while ($d = mysqli_fetch_array($querySelect)) {
         ?>
 
         <div class="row ml-5">
           <div class="col-md-10 col-sm-12 col-xs-12">
             <h2><center>Pengeditan Data</center></h2>
 
-            <form method="post" name="edit">
-              <div class="row">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Nama Barang..." value='<?php echo $d['nama'] ?>' name='nama' required>
-                </div>
-                <div class="col">
-                  <select class="form-control" name='jenis'  required>
-                    <option selected disabled value="">Jenis Barang</option>
-                     <option value="Makanan">Makanan</option>
-                      <option value="Minuman">Minuman</option>
-                       <option value="Lainnya">Lainnya</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Suplier..." value='<?php echo $d['suplier'] ?>' name='suplier' required>
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Harga Unit..." value='<?php echo $d['hargaU'] ?>' name='hargaU' required>
-                </div>
-              </div>
-              <div class="row mt-4">
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Harga Jual..." value='<?php echo $d['hargaJ'] ?>' name='hargaJ' required>
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control" placeholder="Jumlah Barang..." value='<?php echo $d['JumlahB'] ?>' name='JumlahB' required>
-                </div>
-              </div>
+            <form name='edit' method='post'>
+<div class="row">
 
-  <div class="row mt-5 ml-5">
-                <div class="col-md-10 col-sm-12 col-xs-12 ml-5">
-            <button type="submit" class="btn btn-info btn-lg btn-block" name='edit'>Update</button>
+  <div class="col-md-1">
 
-              </form>
+  </div>
+
+<div class="col-md-5 col-sm-12 col-xs-12">
+   <p><b>Nama Barang:</b></p>
+<input class="form-control" type="text" placeholder="Nama Barang..." value="<?php echo $d['nama'] ?>" name='nama' required>
+</div>
+
+
+<div class="col-md-5 col-sm-12 col-xs-12">
+   <p><b>Jumlah Barang:</b></p>
+   <input class="form-control" type="number" placeholder="Jumlah Barang..." value="<?php echo $d['stok'] ?>" name='jumlah' required>
+   </select>
+</div>
+
+
+
+</div>
+
+
+<div class="row">
+  <div class="col-md-1">
+
+  </div>
+
+  <div class="col-md-5 col-sm-12 col-xs-12">
+    <p><b>Tanggal:</b></p>
+  <input class="form-control" type="date" value="<?php echo $d['tanggal_masuk'] ?>" name='tanggal_masuk' required>
+  </div>
+  <div class="col-md-5 col-sm-12 col-xs-12">
+   <p><b>Jenis:</b></p>
+   <select class="form-control" name='jenis_barang'required>
+   <?php
+$query_jenis = mysqli_query($conn, "SELECT * FROM jenis_barang GROUP BY nama ORDER BY nama");
+        while ($data = mysqli_fetch_array($query_jenis)) {
+            if ($data['nama'] == $d['jenis']) {
+                $sel = 'selected';
+            } else {
+                $sel = '';
+            }
+
+            echo "<option value='$data[id]' $sel>$data[nama]</option>";
+            ?>
+    <?php
+}
+        ?>
+     <!-- <option selected disabled value="">Jenis Barang...</option>
+      <option value="Makanan">Makanan</option>
+       <option value="Minuman">Minuman</option>
+        <option value="Lainnya">Lainnya</option> -->
+   </select>
+</div>
+</div>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-1">
+
+  </div>
+
+ <div class="col-md-5 col-sm-12 col-xs-12">
+   <p><b>Harga Jual:</b></p>
+<input class="form-control" type="number" placeholder="Harga Jual..."  value="<?php echo $d['harga'] ?>"  name='harga' required>
+</div>
+
+
+
+</div>
+
+
+
+<div class="row mt-3">
+  <div class="col-md-1">
+
+  </div>
+
+  <div class="col-md-10 col-sm-12 col-xs-12">
+<button type="submit" class="btn btn-primary btn-lg btn-block" name='edit'>Edit</button>
+
+</form>
 
               </div>
 
 <?php
 
-}
+    }
 }
 ?>
           </div>
@@ -249,37 +299,31 @@ ob_start()
 
           <?php
 
-            if(isset($_POST['edit'])){
+if (isset($_POST['edit'])) {
 
+    $edit = mysqli_query($conn, "UPDATE barang SET
 
-
-
-           $edit = mysqli_query($conn, "UPDATE masuk SET
-          nama ='".$_POST['nama']."',
-         jenis ='".$_POST['jenis']."',
-          suplier ='".$_POST['suplier']."',
-          hargaU ='".$_POST['hargaU']."',
-          hargaJ ='".$_POST['hargaJ']."',
-          JumlahB ='".$_POST['JumlahB']."'
-          WHERE id ='".$_GET['id']."'
+         nama ='" . $_POST['nama'] . "',
+          jenis ='" . $_POST['jenis_barang'] . "',
+          harga ='" . $_POST['harga'] . "',
+          tanggal_masuk='" . $_POST['tanggal_masuk'] . "',
+          stok ='" . $_POST['jumlah'] . "'
+          WHERE id ='" . $_GET['id'] . "'
               ");
 
-            if($edit){
-              header("location: Data.php");
-            }else{
+    if ($edit) {
+        header("location: Data.php");
+    } else {
 
+        echo "<div class='col-md-10 col-sm-12 col-xs-12 ml-5'>";
+        echo "<div class='alert alert-danger mt-4 ml-5' role='alert'>";
+        echo "<p><center>Mengedit Data Gagal</center></p>";
+        echo "</div>";
+        echo "</div>";
 
-                              echo "<div class='col-md-10 col-sm-12 col-xs-12 ml-5'>";
-                                 echo "<div class='alert alert-danger mt-4 ml-5' role='alert'>";
-                                echo "<p><center>Mengedit Data Gagal</center></p>";
-                                 echo   "</div>";
-                                 echo "</div>";
+    }
 
-            }
-
-            }
-
-
+}
 
 ?>
 
@@ -346,4 +390,4 @@ ob_start()
               </body>
 
               </html>
-<?php ob_end_flush() ?>
+<?php ob_end_flush()?>
