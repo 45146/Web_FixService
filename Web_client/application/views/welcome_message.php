@@ -56,7 +56,7 @@
 											<?php endif; ?>
 											<?php if ($this->session->userdata('email')) : ?>
 												<li>
-													<div class="dropdown" >
+													<div class="dropdown">
 														<a href="#" data-toggle="dropdown"><?php echo $this->session->userdata('nama'); ?></a>
 														<div class="dropdown-menu">
 															<a style="color:black;" data-toggle="dropdown-item" href="<?php echo site_url('welcome/logout') ?>">Log Out</a>
@@ -182,6 +182,41 @@
 	</div>
 <?php endif; ?>
 <!-- service end -->
+<?php if ($this->session->userdata('email')) : ?>
+<div id="track" class="track_section">
+	<div class="container">
+		<div class="col-sm-12">
+			<h1 class="choose_text">Track Service</h1>
+		</div>
+	</div>
+</div>
+<div class="track_section_2">
+	<div class="col-md-6 offset-md-3">
+		<table class="table table-borderless table-dark">
+			<thead>
+				<tr>
+					<th scope="col">nama service</th>
+					<th scope="col">deskripsi</th>
+					<th scope="col">tanggal service</th>
+					<th scope="col">petugas</th>
+					<th scope="col">status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($track as $trc) : ?>
+					<tr>
+					<td><?php echo $trc->nama_service?></td>
+					<td><?php echo $trc->deskripsi?></td>
+					<td><?php echo $trc->waktu_service?></td>
+					<td><?php echo $trc->petugas?></td>
+					<td><?php echo $trc->status?></td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+<?php endif; ?>
 <!-- contact start -->
 <div id="service" class="contact_section">
 	<div class="container">
@@ -217,7 +252,7 @@
 								<select name="kategori" id="kategori" class="">
 									<option value="">Pilih Kategori</option>
 									<?php foreach ($kategori as $ktg) : ?>
-										<option value="<?php echo $ktg->ID_service ?>"><?php echo $ktg->Nama_service ?></option>
+										<option value="<?php echo $ktg->Nama_service ?>"><?php echo $ktg->Nama_service ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>

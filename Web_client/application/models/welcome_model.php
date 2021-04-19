@@ -37,4 +37,11 @@ class Welcome_model extends CI_Model {
             return false;
         }
     }
+    public function get_track_service()
+    {
+        $this->db->where('email_client', $this->session->userdata('email'));
+        $query = $this->db->get('service_order');
+        return $query->result();
+    }
+    
 }

@@ -12,7 +12,8 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'kategori' => $this->welcome_model->get_kategori()
+			'kategori' => $this->welcome_model->get_kategori(),
+			'track' => $this->welcome_model->get_track_service()
 		);
 		$this->load->view('welcome_message', $data);
 	}
@@ -47,8 +48,6 @@ class Welcome extends CI_Controller {
 		else{
 			redirect('welcome/login');
 		}
-
-		
 	}
 
 	public function logout()
@@ -72,7 +71,7 @@ class Welcome extends CI_Controller {
 
 	public function service_daftar()
 	{
-		$sts = 0;
+		$sts = 'pending';
 		$data = array(
 			'ID_order'  => $this->input->post(''),
 			'nama_client' => $this->input->post('name'),
@@ -80,9 +79,10 @@ class Welcome extends CI_Controller {
 			'email_client' => $this->input->post('email'),
 			'alamat_service' => $this->input->post('alamat'),
 			'waktu_service' => $this->input->post('waktu'),
-			'service' => $this->input->post('kategori'),
+			'nama_service' => $this->input->post('kategori'),
 			'deskripsi' => $this->input->post('deskripsi'),
-			'status' => ($sts)
+			'status' => ($sts),
+			'petugas' => (null)
 		);
 
 		$this->welcome_model->add_service($data);
