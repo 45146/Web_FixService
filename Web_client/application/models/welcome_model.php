@@ -39,13 +39,15 @@ class Welcome_model extends CI_Model
     }
     public function get_track_service()
     {
-        $this->db->select('Nama_service, deskripsi, waktu_service, pegawai, status');
-        $this->db->from('service');
-        $this->db->join('service_order', 'service_order.service = service.ID_service');
+        $this->db->select('Nama_service, deskripsi, waktu_service, worker.nama_worker as pegawai, status_service.status as status');
+        $this->db->from('service_order');
+        $this->db->join('service', 'service_order.service = service.ID_service');
+        $this->db->join('worker','worker.id_worker=service_order.pegawai');
+        $this->db->join('status_service','status_service.id=service_order.status');
         $this->db->where('email_client', $this->session->userdata('email'));
         $query = $this->db->get();
         return $query->result();
-        var_dump($query->result());
+        // var_dump($query->result());
     }
     
 }
