@@ -208,7 +208,7 @@
 							<td><?php echo $trc->Nama_service ?></td>
 							<td><?php echo $trc->deskripsi ?></td>
 							<td><?php echo $trc->waktu_service ?></td>
-							<td><?php echo $trc->petugas ?></td>
+							<td><?php echo $trc->pegawai ?></td>
 							<td><?php echo $trc->status ?></td>
 						</tr>
 					<?php endforeach; ?>

@@ -72,7 +72,7 @@ class Welcome extends CI_Controller {
 
 	public function service_daftar()
 	{
-		$sts = 'pending';
+		$sts = '0';
 		$data = array(
 			'ID_order'  => $this->input->post(''),
 			'nama_client' => $this->input->post('name'),
@@ -80,10 +80,10 @@ class Welcome extends CI_Controller {
 			'email_client' => $this->input->post('email'),
 			'alamat_service' => $this->input->post('alamat'),
 			'waktu_service' => $this->input->post('waktu'),
-			'id_service' => $this->input->post('kategori'),
+			'service' => $this->input->post('kategori'),
 			'deskripsi' => $this->input->post('deskripsi'),
 			'status' => ($sts),
-			'petugas' => (null)
+			'pegawai' => (null)
 		);
 
 		$this->welcome_model->add_service($data);
