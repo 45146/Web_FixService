@@ -13,7 +13,8 @@ class Welcome extends CI_Controller {
 	{
 		$data = array(
 			'kategori' => $this->welcome_model->get_kategori(),
-			'track' => $this->welcome_model->get_track_service()
+			'track' => $this->welcome_model->get_track_service(),
+			// 'service' => $this->welcome_model->get_service()
 		);
 		$this->load->view('welcome_message', $data);
 	}
@@ -79,7 +80,7 @@ class Welcome extends CI_Controller {
 			'email_client' => $this->input->post('email'),
 			'alamat_service' => $this->input->post('alamat'),
 			'waktu_service' => $this->input->post('waktu'),
-			'nama_service' => $this->input->post('kategori'),
+			'id_service' => $this->input->post('kategori'),
 			'deskripsi' => $this->input->post('deskripsi'),
 			'status' => ($sts),
 			'petugas' => (null)

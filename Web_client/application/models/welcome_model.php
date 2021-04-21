@@ -1,11 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome_model extends CI_Model {
+class Welcome_model extends CI_Model
+{
 
     public function add_member($data)
     {
-        $this->db->insert('member', $data);        
+        $this->db->insert('member', $data);
     }
 
     public function get_kategori()
@@ -22,7 +23,7 @@ class Welcome_model extends CI_Model {
 
     public function add_service($data)
     {
-        $this->db->insert('service_order', $data);        
+        $this->db->insert('service_order', $data);
     }
 
     public function login($username, $password)
@@ -30,17 +31,19 @@ class Welcome_model extends CI_Model {
         $this->db->where('email_member', $username);
         $this->db->where('password_member', $password);
         $query = $this->db->get('member');
-        if($query->num_rows() > 0){
+        if ($query->num_rows() > 0) {
             return $query->row();
-        }
-        else{
+        } else {
             return false;
         }
     }
     public function get_track_service()
     {
+        $this->db->select('Nama_service, deskripsi, waktu_service, petugas, status');
+        $this->db->from('service');
+        $this->db->join('service_order', 'service_order.id_service = service.ID_service');
         $this->db->where('email_client', $this->session->userdata('email'));
-        $query = $this->db->get('service_order');
+        $query = $this->db->get();
         return $query->result();
     }
     
