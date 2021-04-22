@@ -109,12 +109,12 @@ if (mysqli_num_rows($res) > 0) {
       <li class="nav-item active">
         <a class="nav-link" href="input.php">
           <i class="fas fa-fw fa-plus"></i>
-          <span>Input Data</span></a>
+          <span>Input Pemasukan</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-plus"></i>
           <span>Chart</span></a>
@@ -123,7 +123,7 @@ if (mysqli_num_rows($res) > 0) {
         <a class="nav-link" href="tables.php">
           <i class="fas fa-fw fa-plus"></i>
           <span>Table</span></a>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

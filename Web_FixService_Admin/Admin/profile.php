@@ -66,6 +66,17 @@ include 'koneksi.php';
       </li>
 
       <li class="nav-item active">
+        <a class="nav-link" href="data_pegawai.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Data Pegawai</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="data_order.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Data Order</span></a>
+      </li>
+
+      <li class="nav-item active">
         <a class="nav-link" href="input.php">
           <i class="fas fa-fw fa-plus"></i>
           <span>Input Pemasukan</span></a>

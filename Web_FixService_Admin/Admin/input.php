@@ -45,9 +45,9 @@ ob_start()
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-tools"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Admin <br/>Fix Service</div>
       </a>
 
       <!-- Divider -->
@@ -67,9 +67,14 @@ ob_start()
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="input.php">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Input Pemasukan</span></a>
+        <a class="nav-link" href="data_pegawai.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Data Pegawai</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="data_order.php">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Data Order</span></a>
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -106,30 +111,28 @@ ob_start()
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-          
-<?php
-            $nama = mysqli_query($conn, "select * from about");
-            $profile = mysqli_fetch_array($nama);
+          <?php
+$username = $_SESSION['username'];
+$nama = mysqli_query($conn, "select * from admin where username='$username'");
+$profile = mysqli_fetch_array($nama);
 ?>
-
 
 
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <?php
-   $sss = mysqli_query($conn, "select * from admin");
-   $rrr = mysqli_fetch_array($sss);
+$sss = mysqli_query($conn, "select * from admin where username='$username'");
+$rrr = mysqli_fetch_array($sss);
 
-
-             ?>
+?>
 
             <!-- Nav Item - User Information -->
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $profile['nama'] ?></span>
-                <img class="img-profile rounded-circle" src=" penampung/<?php echo$profile['foto'] ?>" alt="Profile"  width="100px" height="100px">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $profile['username'] ?></span>
+                <img class="img-profile rounded-circle" src=" resource/<?php echo$profile['foto'] ?>" alt="Profile"  width="100px" height="100px">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

@@ -1,3 +1,18 @@
+
+<?php
+session_start();
+
+if ($_SESSION['password'] == '') {
+  header("location:admin/login.php");
+}
+else{
+  header("location:admin/");
+}
+
+
+
+include 'koneksi.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

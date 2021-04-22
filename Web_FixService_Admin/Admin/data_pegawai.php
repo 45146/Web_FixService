@@ -45,7 +45,7 @@ error_reporting(0);
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-tools"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin Service </div>
+        <div class="sidebar-brand-text mx-3">Admin <br/>Fix Service</div>
       </a>
 
       <!-- Divider -->
@@ -81,7 +81,7 @@ error_reporting(0);
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <li class="nav-item active">
+      <!-- <li class="nav-item active">
         <a class="nav-link" href="charts.php">
           <i class="fas fa-fw fa-plus"></i>
           <span>Chart</span></a>
@@ -90,7 +90,7 @@ error_reporting(0);
         <a class="nav-link" href="tables.php">
           <i class="fas fa-fw fa-plus"></i>
           <span>Table</span></a>
-      </li>
+      </li> -->
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
