@@ -252,7 +252,7 @@
 								<select name="kategori" id="kategori" class="">
 									<option value="">Pilih Kategori</option>
 									<?php foreach ($kategori as $ktg) : ?>
-										<option value="<?php echo $ktg->ID_service ?>"><?php echo $ktg->Nama_service ?></option>
+										<option value="<?php echo $ktg->ID_service ?>"><?php echo $ktg->Nama_service . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Biaya Rp" . $ktg->Biaya_service?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
