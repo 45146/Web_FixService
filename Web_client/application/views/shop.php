@@ -51,8 +51,21 @@
 											<li><a href="<?php echo site_url('welcome/#about')?>">About</a></li>
 											<li><a href="<?php echo site_url('welcome/#service')?>">Service</a></li>
 											<li><a href="<?php echo site_url('welcome/shop')?>">Shop</a></li>
-											<li><a href="<?php echo site_url('welcome/#member')?>">Member</a></li>
-											<li><a href="<?php echo site_url('welcome/login')?>">Login</a></li>
+											<?php if (!$this->session->userdata('email')) : ?>
+												<li><a href="<?php echo site_url('welcome/#member')?>">Member</a></li>
+											<?php endif; ?>
+											<?php if ($this->session->userdata('email')) : ?>
+												<li>
+													<div class="dropdown">
+														<a href="#" data-toggle="dropdown"><?php echo $this->session->userdata('nama'); ?></a>
+														<div class="dropdown-menu">
+															<a style="color:black;" data-toggle="dropdown-item" href="<?php echo site_url('welcome/logout') ?>">Log Out</a>
+														</div>
+													</div>
+												</li>
+											<?php else : ?>
+												<li><a href="<?php echo site_url('welcome/login') ?>">Login</a></li>
+											<?php endif; ?>
 										</ul>
 									</nav>
 								</div>
@@ -113,12 +126,12 @@
 				<?php foreach($barang as $brg):?>
 				<div class="col-sm-4">
 					<div class="power">
-						<div class="icon"><a href="#"><img src="<?php echo site_url('asset/client/images/service.png')?>"></a></div>
+						<div class="icon"><img src="<?php echo $brg->gambar?>" class="img-fluid" alt="Responsive image"></div>
 						<h2 class="totaly_text"><?php echo $brg->nama?></h2>
 						<p class="making"><?php echo $brg->harga?></p>
 					</div>
 					<div class="btn_main">
-						<a href="#"><button type="button" class="read_bt"><i class="fa fa-shopping-cart"></i> Buy</button></a>
+						<a href="<?php echo $brg->link_tp?>" target="_blank"><button type="button" class="read_bt"><i class="fa fa-shopping-cart"></i> Buy</button></a>
 					</div>
 				</div>
 				<?php endforeach;?>

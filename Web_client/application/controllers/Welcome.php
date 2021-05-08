@@ -41,6 +41,7 @@ class Welcome extends CI_Controller {
 			$sess = array(
 				'nama' => $login->nama_member,
 				'email' => $login->email_member,
+				'notelp' => $login->no_telpon_member,
 			);
 			
 			$this->session->set_userdata($sess);
@@ -88,5 +89,11 @@ class Welcome extends CI_Controller {
 
 		$this->welcome_model->add_service($data);
 		redirect('');	
+	}
+
+	public function hapus_order($id)
+	{
+		$this->welcome_model->delete_order($id);
+		redirect('');
 	}
 }

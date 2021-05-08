@@ -192,14 +192,15 @@
 	</div>
 	<div class="track_section_2">
 		<div class="col-md-6 offset-md-3">
-			<table class="table table-borderless table-dark">
+			<table class="table table-borderless table-dark table-responsive">
 				<thead>
 					<tr>
 						<th scope="col">nama service</th>
-						<th scope="col">deskripsi</th>
+						<th width="30%" scope="col">deskripsi</th>
 						<th scope="col">tanggal service</th>
 						<th scope="col">petugas</th>
 						<th scope="col">status</th>
+						<th scope="col">Opsi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -210,7 +211,28 @@
 							<td><?php echo $trc->waktu_service ?></td>
 							<td><?php echo $trc->pegawai ?></td>
 							<td><?php echo $trc->status ?></td>
+							<?php if (empty($trc->pegawai)) : ?>
+								<td>
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#batal<?php echo $trc->ID_order ?>">Batal</button>
+								</td>
+							<?php endif; ?>
 						</tr>
+						<div class="modal fade" id="batal<?php echo $trc->ID_order ?>" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Batal Order</h5>
+									</div>
+									<div class="modal-body">
+										Apakah Anda Yakin Membatalkan Orderan service ?
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+										<a href="<?php echo site_url('welcome/hapus_order/' . $trc->ID_order) ?>" class="btn btn-danger">Ya, Saya Yakin</a>
+									</div>
+								</div>
+							</div>
+						</div>
 					<?php endforeach; ?>
 				</tbody>
 			</table>
@@ -234,13 +256,13 @@
 					<form action="<?php echo site_url('welcome/service_daftar') ?>" method="post">
 						<div class="container">
 							<div class="form-group">
-								<input type="text" class="email-bt" placeholder="Nama" name="name">
+								<input type="text" class="email-bt" placeholder="Nama" name="name" value="<?php echo $this->session->userdata('nama') ?>">
 							</div>
 							<div class="form-group">
-								<input type="text" class="email-bt" placeholder="Email" name="email">
+								<input type="text" class="email-bt" placeholder="Email" name="email" value="<?php echo $this->session->userdata('email') ?>">
 							</div>
 							<div class="form-group">
-								<input type="tel" class="email-bt" placeholder="No Whatsapp" name="nohp">
+								<input type="tel" class="email-bt" placeholder="No Whatsapp" name="nohp" value="<?php echo $this->session->userdata('notelp') ?>">
 							</div>
 							<div class="form-group">
 								<textarea name="alamat" id="alamat" cols="30" rows="10" class="massage-bt" placeholder="Alamat"></textarea>
@@ -252,7 +274,7 @@
 								<select name="kategori" id="kategori" class="">
 									<option value="">Pilih Service</option>
 									<?php foreach ($kategori as $ktg) : ?>
-										<option value="<?php echo $ktg->ID_service ?>"><?php echo $ktg->Nama_service . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Biaya Rp" . $ktg->Biaya_service?></option>
+										<option value="<?php echo $ktg->ID_service ?>"><?php echo $ktg->Nama_service . " (Rp. " . $ktg->Biaya_service . ")" ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
