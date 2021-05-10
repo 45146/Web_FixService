@@ -128,7 +128,7 @@
 					<div class="power">
 						<div class="icon"><img src="<?php echo $brg->gambar?>" class="img-fluid" alt="Responsive image"></div>
 						<h2 class="totaly_text"><?php echo $brg->nama?></h2>
-						<p class="making"><?php echo $brg->harga?></p>
+						<p class="making"><?php echo "Rp." ." ".$brg->harga?></p>
 					</div>
 					<div class="btn_main">
 						<a href="<?php echo $brg->link_tp?>" target="_blank"><button type="button" class="read_bt"><i class="fa fa-shopping-cart"></i> Buy</button></a>
