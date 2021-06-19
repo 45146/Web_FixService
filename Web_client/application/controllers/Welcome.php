@@ -39,12 +39,14 @@ class Welcome extends CI_Controller {
 		$login = $this->welcome_model->login($username, $password);
 		if($login){
 			$sess = array(
+				'id_member'=>$login->ID_member,
 				'nama' => $login->nama_member,
 				'email' => $login->email_member,
 				'notelp' => $login->no_telpon_member,
 			);
 			
 			$this->session->set_userdata($sess);
+			
 			redirect('');
 		}
 		else{

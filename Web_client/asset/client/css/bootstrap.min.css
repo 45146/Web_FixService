@@ -3225,7 +3225,7 @@ input[type=submit].btn-block {
     color: #212529;
     text-align: center;
     list-style: none;
-    background-color: none;
+    background-color: aliceblue;
     background-clip: padding-box;
     border: none !important;
     border-radius: 0
@@ -3379,7 +3379,8 @@ input[type=submit].btn-block {
 }
 
 .dropdown-menu.show {
-    display: block
+    display: block;
+    background-color: aliceblue;
 }
 
 .dropdown-header {

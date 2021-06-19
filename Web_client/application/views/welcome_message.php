@@ -14,7 +14,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!-- bootstrap css -->
-	<link rel="stylesheet" type="text/css" href="<?php echo site_url('asset/client/css/bootstrap.min.css') ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo site_url('asset/client/css/bootstrap.min.css?');echo date('l jS \of F Y h:i:s A'); ?>" />
 	<!-- style css -->
 	<link rel="stylesheet" type="text/css" href="<?php echo site_url('asset/client/css/style.css') ?>">
 	<!-- Responsive-->
@@ -56,7 +56,7 @@
 											<?php endif; ?>
 											<?php if ($this->session->userdata('email')) : ?>
 												<li>
-													<div class="dropdown">
+													<div class="dropdown" style="color:black">
 														<a href="#" data-toggle="dropdown"><?php echo $this->session->userdata('nama'); ?></a>
 														<div class="dropdown-menu">
 															<a style="color:black;" data-toggle="dropdown-item" href="<?php echo site_url('welcome/logout') ?>">Log Out</a>
@@ -201,6 +201,7 @@
 						<th scope="col">petugas</th>
 						<th scope="col">status</th>
 						<th scope="col">Opsi</th>
+						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -216,6 +217,14 @@
 									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#batal<?php echo $trc->ID_order ?>">Batal</button>
 								</td>
 							<?php endif; ?>
+							<?php if (!empty($trc->pegawai)) : ?>
+								<td>
+									
+								</td>
+							<?php endif; ?>
+							<td>
+							<button class="btn btn-dark"onclick="location.href='<?php echo site_url('invoicePdf/') ?>'">Print</button>
+							</td>
 						</tr>
 						<div class="modal fade" id="batal<?php echo $trc->ID_order ?>" tabindex="-1" role="dialog" aria-hidden="true">
 							<div class="modal-dialog" role="document">
