@@ -256,7 +256,7 @@ while ($data = mysqli_fetch_array($query_jenis)) {
   </div>
 
   <div class="col-md-10 col-sm-12 col-xs-12">
-<button type="submit" class="btn btn-primary btn-lg btn-block" name='kirim'>Add</button>
+<button type="submit" class="btn btn-dark btn-lg btn-block" name='kirim'>Add</button>
 
 </form>
 

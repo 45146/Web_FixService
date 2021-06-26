@@ -396,7 +396,7 @@ if (mysqli_num_rows($brg)) {
       <td><?php echo $row['no_telpon'] ?></td>
       <td><?php echo $row['Bidang_ahli'] ?></td>
 
-      <td>&nbsp;<a href="edit.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-success">Edit</button></a> &nbsp; <a href="hapus_pegawai.php?id=<?php echo $row['ID_worker']; ?>"><button type="button" class="btn btn-danger">Hapus</button></a> &nbsp; </td>
+      <td>&nbsp;<a href="editPegawai.php?id=<?php echo $row['ID_worker']; ?>"><button type="button" class="btn btn-success">Edit</button></a> &nbsp; <a href="hapus_pegawai.php?id=<?php echo $row['ID_worker']; ?>"><button type="button" class="btn btn-danger">Hapus</button></a> &nbsp; </td>
 
     </tr>
 
