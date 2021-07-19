@@ -49,5 +49,12 @@ class Welcome_model extends CI_Model
         $this->db->where('ID_order', $id);
         $this->db->delete('service_order');
     }
-    
+    public function get_invoice_print($ID_order)
+    {
+        $this->db->where('email_client', $this->session->userdata('email'));
+		
+		$this->db->where('ID_order', $ID_order);
+        $query = $this->db->get('track_service');        
+        return $query->result();
+    }
 }

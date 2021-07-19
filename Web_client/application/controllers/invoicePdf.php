@@ -12,7 +12,7 @@ class InvoicePdf extends CI_Controller
 		$this->load->model('welcome_model');
 	}
 
-	function index()
+	function print($ID_order)
 	{
 		$pdf = new FPDF('P', 'mm', 'A4');
 		// membuat halaman baru
@@ -69,7 +69,7 @@ class InvoicePdf extends CI_Controller
 		// $query = $this->welcome_model->get('service_order');
 		$pdf->SetFont('Arial', '', 10);
 		$query =
-			$this->welcome_model->get_track_service()
+			$this->welcome_model->get_invoice_print($ID_order)
 			// 'service' => $this->welcome_model->get_service()
 		;
 		// $service_order = $this->db->get_where('service_order', array('ID_order' => '$'))->result();

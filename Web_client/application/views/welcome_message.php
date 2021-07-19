@@ -14,7 +14,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!-- bootstrap css -->
-	<link rel="stylesheet" type="text/css" href="<?php echo site_url('asset/client/css/bootstrap.min.css?');echo date('l jS \of F Y h:i:s A'); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo site_url('asset/client/css/bootstrap.min.css?');
+													echo date('l jS \of F Y h:i:s A'); ?>" />
 	<!-- style css -->
 	<link rel="stylesheet" type="text/css" href="<?php echo site_url('asset/client/css/style.css') ?>">
 	<!-- Responsive-->
@@ -219,11 +220,12 @@
 							<?php endif; ?>
 							<?php if (!empty($trc->pegawai)) : ?>
 								<td>
-									
 								</td>
 							<?php endif; ?>
 							<td>
-							<button class="btn btn-dark"onclick="location.href='<?php echo site_url('invoicePdf/') ?>'">Print</button>
+								<?php if ($trc->status == 'selesai') : ?>
+									<a class="btn btn-dark" href="<?php echo site_url('invoicePdf/print/' . $trc->ID_order) ?>">Print</a>
+								<?php endif; ?>
 							</td>
 						</tr>
 						<div class="modal fade" id="batal<?php echo $trc->ID_order ?>" tabindex="-1" role="dialog" aria-hidden="true">
