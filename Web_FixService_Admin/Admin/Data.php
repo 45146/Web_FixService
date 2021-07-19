@@ -23,7 +23,9 @@ error_reporting(0);
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
@@ -45,39 +47,13 @@ error_reporting(0);
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-tools"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin <br/>Fix Service</div>
+        <div class="sidebar-brand-text mx-3">Admin <br />Fix Service</div>
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="Data.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Barang</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="data_pegawai.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Pegawai</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="data_order.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Order</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="input.php">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Input Pemasukan</span></a>
-      </li>
+      <?php
+			include 'sidebar.php';
+			?>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -121,152 +97,106 @@ error_reporting(0);
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-
-            <?php
-$username = $_SESSION['username'];
-$nama = mysqli_query($conn, "select * from admin where username='$username'");
-$profile = mysqli_fetch_array($nama);
-?>
-
-
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <?php
-$sss = mysqli_query($conn, "select * from admin where username='$username'");
-$rrr = mysqli_fetch_array($sss);
-
-?>
-
-            <!-- Nav Item - User Information -->
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $profile['username'] ?></span>
-                <img class="img-profile rounded-circle" src=" resource/<?php echo $profile['foto'] ?>" alt="Profile"  width="100px" height="100px">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="profile.php">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="setting.php?id=<?php echo $profile['id']; ?>">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="change.php?id=<?php echo $rrr['id']; ?>">
-                  <i class="fas fa-ruler-horizontal fa-sm fa-fw mr-2 text-gray-400"></i>
-                Ganti Password
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-            </ul>
-
-        </nav>
+          <?php
+           include('header.php');
+           ?>
         <!-- End of Topbar -->
 
 
-<!--ini bagian konten-->
-  <form name='kirim' method='post'>
-<div class="row">
+        <!--ini bagian konten-->
+        <form name='kirim' method='post'>
+          <div class="row">
 
-  <div class="col-md-1">
+            <div class="col-md-1">
 
-  </div>
-  <div class="col-md-5 col-sm-12 col-xs-12">
-   <p><b>ID Barang:</b></p>
-<input class="form-control" type="text" placeholder="ID Barang" name='id' required>
-</div>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <p><b>ID Barang:</b></p>
+              <input class="form-control" type="text" placeholder="ID Barang" name='id' required>
+            </div>
 
- <div class="col-md-5 col-sm-12 col-xs-12">
-   <p><b>Nama Barang:</b></p>
-<input class="form-control" type="text" placeholder="Nama Barang..." name='nama' required>
-</div>
-
-
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <p><b>Nama Barang:</b></p>
+              <input class="form-control" type="text" placeholder="Nama Barang..." name='nama' required>
+            </div>
 
 
-</div>
 
 
-<div class="row">
-  <div class="col-md-1">
+          </div>
 
-  </div>
 
-  <div class="col-md-5 col-sm-12 col-xs-12">
-    <p><b>Tanggal:</b></p>
-  <input class="form-control" type="date" name='tanggal_masuk' required>
-  </div>
-  <div class="col-md-5 col-sm-12 col-xs-12">
-   <p><b>Jenis:</b></p>
-   <select class="form-control" name='jenis_barang' required>
-   <?php
+          <div class="row">
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <p><b>Tanggal:</b></p>
+              <input class="form-control" type="date" name='tanggal_masuk' required>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <p><b>Jenis:</b></p>
+              <select class="form-control" name='jenis_barang' required>
+                <?php
 $query_jenis = mysqli_query($conn, "SELECT * FROM jenis_barang GROUP BY nama ORDER BY nama");
 while ($data = mysqli_fetch_array($query_jenis)) {
     ?>
                 <option value="<?=$data['id'];?>"><?php echo $data['nama']; ?></option>
-    <?php
+                <?php
 }
 ?>
-     <!-- <option selected disabled value="">Jenis Barang...</option>
+                <!-- <option selected disabled value="">Jenis Barang...</option>
       <option value="Makanan">Makanan</option>
        <option value="Minuman">Minuman</option>
         <option value="Lainnya">Lainnya</option> -->
-   </select>
-</div>
-</div>
+              </select>
+            </div>
+          </div>
 
 
 
 
 
-<div class="row">
-  <div class="col-md-1">
+          <div class="row">
+            <div class="col-md-1">
 
-  </div>
+            </div>
 
- <div class="col-md-5 col-sm-12 col-xs-12">
-   <p><b>Harga Jual:</b></p>
-<input class="form-control" type="number" placeholder="Harga Jual..." name='harga' required>
-</div>
-
-
- <div class="col-md-5 col-sm-12 col-xs-12">
-   <p><b>Jumlah Barang:</b></p>
-   <input class="form-control" type="number" placeholder="Jumlah Barang..." name='jumlah' required>
-   </select>
-</div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <p><b>Harga Jual:</b></p>
+              <input class="form-control" type="number" placeholder="Harga Jual..." name='harga' required>
+            </div>
 
 
-</div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <p><b>Jumlah Barang:</b></p>
+              <input class="form-control" type="number" placeholder="Jumlah Barang..." name='jumlah' required>
+              </select>
+            </div>
 
 
-
-<div class="row mt-3">
-  <div class="col-md-1">
-
-  </div>
-
-  <div class="col-md-10 col-sm-12 col-xs-12">
-<button type="submit" class="btn btn-dark btn-lg btn-block" name='kirim'>Add</button>
-
-</form>
-
-</div>
+          </div>
 
 
 
+          <div class="row mt-3">
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-10 col-sm-12 col-xs-12">
+              <button type="submit" class="btn btn-dark btn-lg btn-block" name='kirim'>Add</button>
+
+        </form>
+
+      </div>
 
 
-<?php
+
+
+
+      <?php
 if (isset($_POST['kirim'])) {
     $id = $_POST['id'];
     $nama = htmlspecialchars($_POST['nama']);
@@ -329,27 +259,27 @@ if (isset($_POST['kirim'])) {
 
 
 
-<div class="col-md-1">
+      <div class="col-md-1">
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-<?php
+    <?php
 $jumlah_produk = mysqli_query($conn, "SELECT COUNT(*) as id from masuk");
 $row = mysqli_fetch_array($jumlah_produk);
 $jum = $row['id'];
 
 ?>
 
-<?php
+    <?php
 
 $Jumlah_modal = mysqli_query($conn, "select sum(jumlah_modal) as total from modal");
 $total = mysqli_fetch_array($Jumlah_modal);
 
 ?>
 
-<?php
+    <?php
 
 $Jumlah_pemasukan = mysqli_query($conn, "select sum(hargaJ * JumlahB) as dari from masuk");
 $pemasukan = mysqli_fetch_array($Jumlah_pemasukan);
@@ -357,7 +287,7 @@ $pemasukan = mysqli_fetch_array($Jumlah_pemasukan);
 ?>
 
 
-<?php
+    <?php
 
 $jumlahBarang = mysqli_query($conn, "SELECT COUNT(*) as jumlah from barang");
 $jumlah_barang = mysqli_fetch_array($jumlahBarang);
@@ -368,58 +298,64 @@ $jumlah_total_stock = mysqli_fetch_array($JumlahTotalStockQuery);
 ?>
 
 
-<?php
+    <?php
 
 $untung = ($jumlahd['tor']) - ($total['total']);
 
 ?>
 
 
-<div class="row">
-<div class="col-md-8  mt-4">
-<h2><center> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Data Produk Fix Service</center></h2>
-</div>
-</div>
+    <div class="row">
+      <div class="col-md-8  mt-4">
+        <h2>
+          <center> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp;Data Produk Fix Service</center>
+        </h2>
+      </div>
+    </div>
 
-<p class="ml-5">Jumlah Produk: &nbsp; <?php echo "" . number_format($jumlah_barang['jumlah']) . "&nbsp; Produk"; ?></p>
-<p class="ml-5">Jumlah Total Stock: &nbsp; <?php echo "" . number_format($jumlah_total_stock['stok']) . "&nbsp; Stock Barang"; ?></p> 
+    <p class="ml-5">Jumlah Produk: &nbsp; <?php echo "" . number_format($jumlah_barang['jumlah']) . "&nbsp; Produk"; ?>
+    </p>
+    <p class="ml-5">Jumlah Total Stock: &nbsp;
+      <?php echo "" . number_format($jumlah_total_stock['stok']) . "&nbsp; Stock Barang"; ?></p>
 
-<!-- <p class="ml-5">Keuntungan Dagang: &nbsp; <?php echo "Rp." . number_format($jumlahd['tor']) . "" . "-" . "Rp." . number_format($total['total']) . ""; ?></p>
+    <!-- <p class="ml-5">Keuntungan Dagang: &nbsp; <?php echo "Rp." . number_format($jumlahd['tor']) . "" . "-" . "Rp." . number_format($total['total']) . ""; ?></p>
 <p class="ml-5">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Total: <?php echo "<b> Rp." . number_format($untung) . ""; ?></p> -->
 
-  <div class="card shadow  ml-4 mr-4">
-<div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
-  </div>
+    <div class="card shadow  ml-4 mr-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
+      </div>
 
 
 
 
-<div class="row mt-3">
+      <div class="row mt-3">
 
 
-<div class="col-md-8  mt-4">
-<br>
+        <div class="col-md-8  mt-4">
+          <br>
 
 
 
-</div>
+        </div>
 
-<div class="col-md-4 mt-5">
-  <form class="form-inline my-2 my-lg-0" action="cari.php" method="get" name='cari'>
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='cari'  required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-</div>
+        <div class="col-md-4 mt-5">
+          <form class="form-inline my-2 my-lg-0" action="cari.php" method="get" name='cari'>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name='cari'
+              required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
 
-</div>
+      </div>
 
-<div class="row">
-  <div class="col-md-8  mt-4">
+      <div class="row">
+        <div class="col-md-8  mt-4">
 
-</div>
-</div>
-<?php
+        </div>
+      </div>
+      <?php
 
 $hmm = $jum;
 $tampil = 10;
@@ -432,25 +368,25 @@ $pages = ceil($total / $tampil);
 ?>
 
 
-<div class="col-md-12 col-sm-12 col-xs-12  mt-5">
-  <div class="table-responsive service">
-  <table class="table table-bordered table-hover  mt-3 text-nowrap css-serial">
-  <thead>
-    <tr>
+      <div class="col-md-12 col-sm-12 col-xs-12  mt-5">
+        <div class="table-responsive service">
+          <table class="table table-bordered table-hover  mt-3 text-nowrap css-serial">
+            <thead>
+              <tr>
 
-      <th scope="col">ID</th>
-      <th scope="col">Nama Produk</th>
-      <th scope="col">Jenis</th>
-      <th scope="col">Harga/Unit</th>
-      <th scope="col">Tanggal Masuk</th>
-      <th scope="col">Jumlah Barang</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nama Produk</th>
+                <th scope="col">Jenis</th>
+                <th scope="col">Harga/Unit</th>
+                <th scope="col">Tanggal Masuk</th>
+                <th scope="col">Jumlah Barang</th>
 
-      <th scope="col">Opsi</th>
+                <th scope="col">Opsi</th>
 
-    </tr>
+              </tr>
 
-  </thead>
-  <?php
+            </thead>
+            <?php
 if (isset($_GET['cari'])) {
     $cari = mysqli_real_escape_string($conn, $_GET['cari']);
     $brg = mysqli_query($conn, "select barang.id as id,barang.nama as nama ,jenis_barang.nama as jenis,barang.harga as harga, barang.tanggal_masuk as tanggal_masuk,barang.stok as stok from barang INNER JOIN jenis_barang on barang.jenis=jenis_barang.id  where barang.id like '%" . $cari . "%' or barang.nama like '%" . $cari . "%' or jenis_barang.nama like '%" . $cari . "%' ");
@@ -481,22 +417,28 @@ if (mysqli_num_rows($brg)) {
     while ($row = mysqli_fetch_array($brg)) {
 
         ?>
-  <tbody>
-    <tr>
-      <th scope="row"><?php echo $row['id'] ?></th>
-      <td><?php echo $row['nama'] ?></td>
-      <td><?php echo $row['jenis'] ?></td>
-      <td><?php echo $row['harga'] ?></td>
-      <td><?php echo $row['tanggal_masuk'] ?></td>
-      <td><?php echo $row['stok'] ?></td>
+            <tbody>
+              <tr>
+                <th scope="row"><?php echo $row['id'] ?></th>
+                <td><?php echo $row['nama'] ?></td>
+                <td><?php echo $row['jenis'] ?></td>
+                <td><?php echo $row['harga'] ?></td>
+                <td><?php echo $row['tanggal_masuk'] ?></td>
+                <td><?php echo $row['stok'] ?></td>
 
-      <td>&nbsp;<a href="edit.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-success">Edit</button></a> &nbsp; <a href="hapus.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-danger">Hapus</button></a> &nbsp; <a href="detail.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-info">Detail</button></a></td>
+                <td>&nbsp;<a href="edit.php?id=<?php echo $row['id']; ?>"><button type="button"
+                      class="btn btn-success">Edit</button></a> &nbsp; <a
+                    href="hapus.php?id=<?php echo $row['id']; ?>"><button type="button"
+                      class="btn btn-danger">Hapus</button></a> &nbsp; 
+                      <!-- <a 
+                      href="detail.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-info">Detail</button></a> -->
+                  </td> 
 
-    </tr>
+              </tr>
 
-  </tbody>
+            </tbody>
 
-<?php }} elseif (mysqli_num_rows($brg) <= 0 and !$cari) {
+            <?php }} elseif (mysqli_num_rows($brg) <= 0 and !$cari) {
 
     echo "<div class='col-md-10 col-sm-12 col-xs-12 ml-5'>";
     echo "<div class='alert alert-danger mt-4 ml-5' role='alert'>";
@@ -507,17 +449,17 @@ if (mysqli_num_rows($brg)) {
 }?>
 
 
-</table>
+          </table>
 
-<div class="row">
-    <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-5">
 
-    </div>
+            </div>
 
-    <div class="col-md-5">
+            <div class="col-md-5">
 
-    </div>
-    <?php
+            </div>
+            <?php
 $cep = mysqli_query($conn, "select * from masuk");
 $tesd = mysqli_num_rows($cep);
 
@@ -529,98 +471,99 @@ if ($tesd > 0) {
 
 }?>
 
-</div>
+          </div>
 
 
-<nav aria-label="Page navigation example">
-<ul class="pagination">
-  <?php
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <?php
 for ($x = 1; $x <= $pages; $x++) {
     $isActive = '';
 
     ?>
-    <?php
+              <?php
 if ($x == $page) {
         ?>
-    <li class="page-item active"><a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
-   <?php
+              <li class="page-item active"><a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
+              <?php
 } else {
         ?>
-    <li class="page-item"><a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
-    <?php
+              <li class="page-item"><a class="page-link" href="?page=<?php echo $x ?>"><?php echo $x ?></a></li>
+              <?php
 
     }
     ?>
-  <!-- //  echo"<li class='.$isActive'><a class='page-link' href='page=.$x.' ""</a>""</li>" -->
+              <!-- //  echo"<li class='.$isActive'><a class='page-link' href='page=.$x.' ""</a>""</li>" -->
 
-    <?php
+              <?php
 }
 
 ?>
 
 
 
-</ul>
-</nav>
-</div>
-</div>
-
-
-
-
-
-
-
-</div>
-
-
+            </ul>
+          </nav>
+        </div>
       </div>
-      <!-- End of Content Wrapper -->
+
+
+
+
+
+
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Yakin Mau Keluar?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Jika Keluar Anda Harus Login Terlebih Dahulu !</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-            <a class="btn btn-primary" href="logout.php">Keluar</a>
-          </div>
+  </div>
+  <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yakin Mau Keluar?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Jika Keluar Anda Harus Login Terlebih Dahulu !</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+          <a class="btn btn-primary" href="logout.php">Keluar</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 
-  </body>
+</body>
 
-  </html>
+</html>

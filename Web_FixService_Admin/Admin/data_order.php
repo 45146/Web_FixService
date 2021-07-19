@@ -49,35 +49,9 @@ error_reporting(0);
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="Data.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Barang</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="data_pegawai.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Pegawai</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="data_order.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Order</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="input.php">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Input Pemasukan</span></a>
-      </li>
+      <?php
+			include 'sidebar.php';
+			?>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -123,53 +97,9 @@ error_reporting(0);
           <ul class="navbar-nav ml-auto">
 
 
-            <?php
-$username = $_SESSION['username'];
-$nama = mysqli_query($conn, "select * from admin where username='$username'");
-$profile = mysqli_fetch_array($nama);
-?>
-
-
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <?php
-$sss = mysqli_query($conn, "select * from admin where username='$username'");
-$rrr = mysqli_fetch_array($sss);
-
-?>
-
-            <!-- Nav Item - User Information -->
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $profile['username'] ?></span>
-                <img class="img-profile rounded-circle" src=" resource/<?php echo $profile['foto'] ?>" alt="Profile"  width="100px" height="100px">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="profile.php">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="setting.php?id=<?php echo $profile['id']; ?>">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="change.php?id=<?php echo $rrr['id']; ?>">
-                  <i class="fas fa-ruler-horizontal fa-sm fa-fw mr-2 text-gray-400"></i>
-                Ganti Password
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="logout.php" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
-            </ul>
-
-        </nav>
+           <?php
+           include('header.php');
+           ?>
         <!-- End of Topbar -->
 
 
@@ -310,8 +240,6 @@ $untung = ($jumlahd['tor']) - ($total['total']);
 
 
 <div class="col-md-8  mt-4">
-<br>
-
 
 
 </div>
@@ -325,11 +253,6 @@ $untung = ($jumlahd['tor']) - ($total['total']);
 
 </div>
 
-<div class="row">
-  <div class="col-md-8  mt-4">
-
-</div>
-</div>
 <?php
 
 $hmm = $jum;
@@ -343,7 +266,10 @@ $pages = ceil($total / $tampil);
 ?>
 
 
-<div class="col-md-12 col-sm-12 col-xs-12  mt-5">
+<div class="col-md-12 col-sm-12 col-xs-12 ">
+  <a href="report_order.php">
+<button type="submit" name="finish" class="btn btn-success">Cetak Laporan Order</button>
+</a>
   <div class="table-responsive service">
   <table class="table table-bordered table-hover  mt-3 text-nowrap css-serial">
   <thead>
@@ -400,7 +326,7 @@ if (mysqli_num_rows($order)) {
         ?>
   <tbody>
     <tr>
-      <th scope="row"><?php echo $row['ID_order'] ?></th>
+      <th scope="row"> INVOICE-00<?php echo $row['ID_order'] ?></th>
       <td><?php echo $row['nama_client'] ?></td>
       <td><?php echo $row['no_telpon_client'] ?></td>
       <td><?php echo $row['email_client'] ?></td>

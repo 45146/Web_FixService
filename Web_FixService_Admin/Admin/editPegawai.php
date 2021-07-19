@@ -58,26 +58,9 @@ ob_start()
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="Data.php">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Data Barang</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="input.php">
-          <i class="fas fa-fw fa-plus"></i>
-          <span>Input Pemasukan</span></a>
-      </li>
+      <?php
+			include 'sidebar.php';
+			?>
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -197,7 +180,7 @@ if ($fail) {
 
         <div class="row ml-5">
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <h2><center>Pengeditan Data</center></h2>
+            <h2><center>Edit Data</center></h2>
 
             <form name='edit' method='post'>
 <div class="row">
@@ -245,7 +228,7 @@ if ($fail) {
   </div>
 
   <div class="col-md-10 col-sm-12 col-xs-12">
-<button type="submit" class="btn btn-primary btn-lg btn-block" name='edit'>Edit</button>
+<button type="submit" class="btn btn-dark btn-lg btn-block" name='edit'>Edit</button>
 
 </form>
 
