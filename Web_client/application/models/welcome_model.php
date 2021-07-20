@@ -52,9 +52,8 @@ class Welcome_model extends CI_Model
     public function get_invoice_print($ID_order)
     {
         $this->db->where('email_client', $this->session->userdata('email'));
-		
 		$this->db->where('ID_order', $ID_order);
-        $query = $this->db->get('track_service');        
+        $query = $this->db->get('service_order_view');        
         return $query->result();
     }
 }
